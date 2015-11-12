@@ -165,13 +165,22 @@ QUnit.test("Input values and defaults work as expected", function (assert) {
   assert.equal(el.value, "foo");
   assert.equal(el.defaultValue, "foo");
 
+  el.value = "bar";
+  assert.equal(el.defaultValue, "foo");
+
+  el.defaultValue = "asdf";
+  assert.equal(el.getAttribute("value"), "asdf", "attribute should follow default value");
+  assert.equal(el.value, "bar");
+
   el.setAttribute("checked", "checked");
   assert.equal(el.checked, true);
   assert.equal(el.defaultChecked, true);
 
-  el.value = "bar";
-  assert.equal(el.defaultValue, "foo");
-
   el.checked = false;
   assert.equal(el.defaultChecked, true);
+
+  el.checked = true;
+  el.defaultChecked = false;
+  assert.equal(el.hasAttribute("checked"), false);
+  assert.equal(el.checked, true);
 });
