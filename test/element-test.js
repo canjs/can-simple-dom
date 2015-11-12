@@ -70,6 +70,12 @@ QUnit.test("child nodes can be access via item()", function(assert) {
   assert.strictEqual(parent.childNodes.item(1), null);
 });
 
+QUnit.test("child nodes returns an array like object", function(assert) {
+  var document = new Document();
+
+  assert.equal(document.documentElement.childNodes.length, 2, "documentElement should have head and body");
+});
+
 QUnit.test("insertBefore can insert before the last child node", function(assert) {
   var document = new Document();
 
@@ -120,7 +126,7 @@ QUnit.test("cloneNode(true) recursively clones nodes", function(assert) {
 
   var actual = new Serializer(voidMap).serialize(fragment(clone));
 
-  assert.equal(actual, '<div><p>hello<span> world</span>!</p><img src="hamster.png"><span></span></div>');
+  assert.equal(actual, '<div><p>hello<span> world</span>!</p><img src="hamster.png"/><span></span></div>');
 });
 
 QUnit.test("anchor element is created successfully - micro-location works (see #11)", function (assert) {
@@ -140,4 +146,47 @@ QUnit.test("style.cssText is two way bound to the style attribute (#13)", functi
   var el = document.createElement('div');
   el.style.cssText = "color: green;";
   assert.equal(el.getAttribute("style"), "color: green;");
+});
+
+QUnit.test("hasAttribute works", function (assert) {
+  var document = new Document();
+  var el = document.createElement('div');
+
+  assert.equal(el.hasAttribute('foo'), false);
+
+  el.setAttribute('foo', 'bar');
+  assert.equal(el.hasAttribute('foo'), true);
+});
+
+QUnit.test("Input values and defaults work as expected", function (assert) {
+  var document = new Document();
+  var el = document.createElement('input');
+
+  assert.equal(el.value, "");
+  assert.equal(el.checked, false);
+  assert.equal(el.defaultValue, "");
+  assert.equal(el.defaultChecked, false);
+
+  el.setAttribute("value", "foo");
+  assert.equal(el.value, "foo");
+  assert.equal(el.defaultValue, "foo");
+
+  el.value = "bar";
+  assert.equal(el.defaultValue, "foo");
+
+  el.defaultValue = "asdf";
+  assert.equal(el.getAttribute("value"), "asdf", "attribute should follow default value");
+  assert.equal(el.value, "bar");
+
+  el.setAttribute("checked", "checked");
+  assert.equal(el.checked, true);
+  assert.equal(el.defaultChecked, true);
+
+  el.checked = false;
+  assert.equal(el.defaultChecked, true);
+
+  el.checked = true;
+  el.defaultChecked = false;
+  assert.equal(el.hasAttribute("checked"), false);
+  assert.equal(el.checked, true);
 });
