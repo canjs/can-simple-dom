@@ -14,10 +14,12 @@ QUnit.test('serializes correctly', function (assert) {
     element('div', { id:'foo' },
       element('b', {},
         text('Foo & Bar')
-      )
+      ),
+      element('img'),
+      element('br')
     )
   ));
-  assert.equal(actual, '<div id="foo"><b>Foo &amp; Bar</b></div>');
+  assert.equal(actual, '<div id="foo"><b>Foo &amp; Bar</b><img/><br/></div>');
 });
 
 QUnit.test('serializes textContent', function(assert) {
