@@ -70,6 +70,12 @@ QUnit.test("child nodes can be access via item()", function(assert) {
   assert.strictEqual(parent.childNodes.item(1), null);
 });
 
+QUnit.test("child nodes returns an array like object", function(assert) {
+  var document = new Document();
+
+  assert.equal(document.documentElement.childNodes.length, 2, "documentElement should have head and body");
+});
+
 QUnit.test("insertBefore can insert before the last child node", function(assert) {
   var document = new Document();
 
