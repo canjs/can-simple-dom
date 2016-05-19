@@ -188,3 +188,33 @@ QUnit.test("innerHTML does not parse the contents of SCRIPT and STYLE nodes", fu
     ok(0, "should not cause an error")
   }
 });
+
+QUnit.test("Setting an element's textContent inserts TextNode", function(assert){
+	var document = new Document();
+	var el = document.createElement("div");
+	el.textContent = "foo";
+
+	var tn = el.childNodes.item(0);
+	assert.equal(tn.nodeType, 3, "It is a TextNode");
+	assert.equal(tn.nodeValue, "foo", "With the text");
+	assert.equal(el.textContent, "foo", "Getter works");
+});
+
+QUnit.test("Setting textContent when there is already a child", function(assert){
+	var document = new Document();
+	var el = document.createElement("div");
+
+	// Add a child
+	el.appendChild(document.createElement("span"));
+
+	assert.equal(el.childNodes.item(0).nodeName, "SPAN", "starts as a span");
+
+	el.textContent = "hello world";
+
+	var tn = el.childNodes.item(0);
+	assert.equal(tn.nodeType, 3, "It is a TextNode");
+	assert.equal(tn.nodeValue, "hello world", "With the text");
+	assert.equal(el.textContent, "hello world", "Getter works");
+
+	assert.equal(el.childNodes.item(1), null, "span is gone");
+});
