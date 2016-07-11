@@ -158,6 +158,44 @@ QUnit.test("replaceChild works", function(assert){
 	assert.equal(parent.firstChild.nodeName, 'SPAN', 'child is now the span');
 });
 
+QUnit.test("children list works", function(assert){
+	var document = new Document();
+	var parent = document.createElement('div');
+	var one = document.createElement('p');
+	var two = document.createElement('span');
+	var three = document.createElement('img');
+
+	parent.appendChild(one);
+	parent.appendChild(two);
+	parent.appendChild(three);
+	assert.equal(parent.children[0], one, 'After appendChild first element in children is p');
+	assert.equal(parent.children[1], two, '- second element in children is span');
+	assert.equal(parent.children[2], three, '- second element in children is img');
+	assert.equal(parent.children.length, 3, '- length of children is 3');
+
+	parent.removeChild(one);
+	assert.equal(parent.children[0], two, 'After removeChild the first element in children is span');
+	assert.equal(parent.children[1], three, '- second element in children is img');
+	assert.equal(parent.children.length, 2, '- length of children is 2');
+
+	parent.replaceChild(one, two);
+	assert.equal(parent.children[0], one, 'After replaceChild the first element in children is p');
+	assert.equal(parent.children[1], three, '- second element in children is img');
+	assert.equal(parent.children.length, 2, '- length of children is 2');
+
+	var frag = document.createDocumentFragment();
+	var elem = document.createElement('div');
+	var elem2 = document.createElement('div');
+	frag.appendChild(elem);
+	frag.appendChild(elem2);
+	parent.appendChild(frag);
+	assert.equal(parent.children[0], one, 'After appending a document fragment: the first element in children is p');
+	assert.equal(parent.children[1], three, '- second element in children is img');
+	assert.equal(parent.children[2], elem, '- third element in children is div');
+	assert.equal(parent.children[3], elem2, '- fourth element in children is div');
+	assert.equal(parent.children.length, 4, '- length of children is 4');
+});
+
 QUnit.test("setAttribute('class', value) updates the className", function(assert){
 	var document = new Document();
 	var el = document.createElement("div");
