@@ -194,6 +194,10 @@ QUnit.test("children list works", function(assert){
 	assert.equal(parent.children[2], elem, '- third element in children is div');
 	assert.equal(parent.children[3], elem2, '- fourth element in children is div');
 	assert.equal(parent.children.length, 4, '- length of children is 4');
+
+	// cloneNode:
+	var clonned = parent.cloneNode(true);
+	assert.equal(parent.children.length, 4, 'Clonned node length of children is 4');
 });
 
 QUnit.test("setAttribute('class', value) updates the className", function(assert){
