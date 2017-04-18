@@ -33,12 +33,12 @@ QUnit.test('serializes textContent', function(assert) {
 QUnit.test('correctly serializes code blocks', function(assert) {
 	var el, actual, frag;
 
-	el = element('code', {});
+	el = element('script', {});
 	el.appendChild(
 		text("<anonymous>")
 	);
 
 	actual = this.serializer.serialize(fragment(el));
 
-	assert.equal(actual, '<code><anonymous></code>');
+	assert.equal(actual, '<script><anonymous></script>', 'script tag content serialized');
 });
