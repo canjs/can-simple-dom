@@ -36,15 +36,15 @@
     ]
   },
   "devDependencies": {
-    "jquery": "^2.2.0",
+    "jquery": "^3.2.1",
     "steal": "^1.2.9",
     "steal-qunit": "^1.0.1",
     "steal-tools": "^1.1.2",
-    "testee": "^0.3.1"
+    "testee": "^0.5.0"
   },
   "dependencies": {
     "he": "^1.1.0",
     "micro-location": "^0.1.4",
-    "simple-html-tokenizer": "^0.2.1"
+    "simple-html-tokenizer": "^0.4.1"
   }
 }
