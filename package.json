@@ -12,7 +12,8 @@
     "release:patch": "npm version patch && npm publish",
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish",
-    "test": "testee lib/test/test.html --browsers firefox --reporter Spec"
+    "test": "npm run detect-cycle && testee lib/test/test.html --browsers firefox --reporter Spec",
+    "detect-cycle": "detect-cyclic-packages --ignore done-serve"
   },
   "keywords": [
     "html",
@@ -36,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "detect-cyclic-packages": "^1.1.0",
     "jquery": "^2.2.0",
     "steal": "^1.2.9",
     "steal-qunit": "^1.0.1",
