@@ -1,4 +1,5 @@
 @page can-simple-dom
+@hide
 
 # can-simple-dom
 
