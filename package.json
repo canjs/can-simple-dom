@@ -1,6 +1,6 @@
 {
   "name": "can-simple-dom",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "A simple JS DOM.",
   "main": "dist/cjs/simple-dom.js",
   "scripts": {
