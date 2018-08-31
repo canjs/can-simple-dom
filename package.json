@@ -2,17 +2,15 @@
   "name": "can-simple-dom",
   "version": "1.3.4",
   "description": "A simple JS DOM.",
-  "main": "dist/cjs/simple-dom.js",
+  "main": "can-simple-dom.js",
   "scripts": {
-    "build": "node build.js",
-    "prepublish": "node build.js",
     "preversion": "npm test",
     "publish": "git push origin && git push origin --tags",
     "release:prerelease": "npm version prerelease && npm publish",
     "release:patch": "npm version patch && npm publish",
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish",
-    "test": "npm run detect-cycle && testee lib/test/test.html --browsers firefox --reporter Spec",
+    "test": "npm run detect-cycle && testee test/test.html --browsers firefox --reporter Spec",
     "detect-cycle": "detect-cyclic-packages --ignore done-serve"
   },
   "keywords": [
@@ -26,15 +24,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/canjs/can-simple-dom.git"
-  },
-  "system": {
-    "main": "simple-dom.js",
-    "directories": {
-      "lib": "lib"
-    },
-    "npmIgnore": [
-      "testee"
-    ]
   },
   "devDependencies": {
     "detect-cyclic-packages": "^1.1.0",
