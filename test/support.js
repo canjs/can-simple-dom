@@ -2,7 +2,7 @@ var Document = require('../lib/document');
 
 var root = typeof window !== "undefined" ? window : global;
 
-exports.document = new Document();
+var document = exports.document = new Document();
 
 exports.element = function(tagName, attrs) {
   var el = document.createElement(tagName);
