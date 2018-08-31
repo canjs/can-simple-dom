@@ -1,6 +1,4 @@
 /node_modules/
-/test
-/.jshintrc
-/.npmignore
-/.travis.yml
-/testem.json
+.jshintrc
+.npmignore
+.travis.yml
