@@ -215,6 +215,15 @@ QUnit.test("removeAttribute('class') updates the className", function (assert) {
 	assert.equal(el.className, '', "Element's className is same as the attribute class");
 });
 
+QUnit.test("setAttributeNS() sets the namespaceURI", function(assert) {
+	var document = new Document();
+	var d = document.createElement('d1');
+	var ns = 'http://www.mozilla.org/ns/specialspace';
+	d.setAttributeNS(ns, 'align', 'center');
+	var attrs = d.attributes;
+	assert.equal(attrs[0].namespaceURI, ns, "sets the namespace");
+});
+
 QUnit.test("innerHTML does not parse the contents of SCRIPT and STYLE nodes", function (assert) {
   var document = new Document();
   var div = document.createElement("div");
