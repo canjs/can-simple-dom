@@ -141,6 +141,14 @@ QUnit.test("anchor element is created successfully - micro-location works (see #
   }
 });
 
+QUnit.test("anchor elements href is reflected on attributes", function(assert) {
+	assert.expect(1);
+	var document = new Document();
+	var el = document.createElement("a");
+	el.href = "foo.com";
+	assert.equal(el.getAttribute("href"), "foo.com");
+});
+
 QUnit.test("style.cssText is two way bound to the style attribute (#13)", function(assert){
   var document = new Document();
   var el = document.createElement('div');
