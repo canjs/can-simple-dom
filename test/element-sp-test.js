@@ -7,31 +7,31 @@ var tokenize = require('../lib/default-tokenize');
 
 QUnit.module('can-simple-dom - Element with serialization and parsing');
 
-QUnit.test("document.implementation is supported (#23)", function(){
+QUnit.test("document.implementation is supported (#23)", function(assert) {
 
   var document = new Document();
   document.__addSerializerAndParser(new Serializer(voidMap), new Parser(tokenize, document, voidMap));
 
-  ok(document.implementation, "implementation exists");
+  assert.ok(document.implementation, "implementation exists");
   var doc2 = document.implementation.createHTMLDocument("");
-  ok(doc2.body, "has a body");
+  assert.ok(doc2.body, "has a body");
 });
 
-QUnit.test("innerHTML supported", function(){
+QUnit.test("innerHTML supported", function(assert) {
 
   var document = new Document();
   document.__addSerializerAndParser(new Serializer(voidMap), new Parser(tokenize, document, voidMap));
 
   document.body.innerHTML = "<span class='bar'>HI</span>";
 
-  QUnit.equal( document.body.firstChild.nodeName, "SPAN");
-  QUnit.equal( document.body.firstChild.className, "bar");
-  QUnit.equal( document.body.firstChild.firstChild.nodeValue, "HI");
+  assert.equal( document.body.firstChild.nodeName, "SPAN");
+  assert.equal( document.body.firstChild.className, "bar");
+  assert.equal( document.body.firstChild.firstChild.nodeValue, "HI");
 
-  QUnit.equal( document.body.innerHTML, "<span class=\"bar\">HI</span>");
+  assert.equal( document.body.innerHTML, "<span class=\"bar\">HI</span>");
 });
 
-QUnit.test("outerHTML supported", function(){
+QUnit.test("outerHTML supported", function(assert) {
 
   var document = new Document();
   document.__addSerializerAndParser(new Serializer(voidMap), new Parser(tokenize, document, voidMap));
@@ -40,8 +40,8 @@ QUnit.test("outerHTML supported", function(){
 
   var item = document.getElementById('item');
 
-  QUnit.equal( item.outerHTML, "<div id=\"item\">HI</div>", "getter");
+  assert.equal( item.outerHTML, "<div id=\"item\">HI</div>", "getter");
   item.outerHTML = "<label>IT</label>";
 
-  QUnit.equal( document.body.innerHTML,  "<span></span><label>IT</label><span></span>", "setter");
+  assert.equal( document.body.innerHTML,  "<span></span><label>IT</label><span></span>", "setter");
 });

@@ -239,19 +239,19 @@ QUnit.test("innerHTML does not parse the contents of SCRIPT and STYLE nodes", fu
 
   try {
     div.innerHTML = "<span>foo</span>";
-    ok(0, "should not make it here b/c no parser is shipped");
+    assert.ok(0, "should not make it here b/c no parser is shipped");
   } catch (ex) {
-    ok(1, "tried to parse content");
+    assert.ok(1, "tried to parse content");
   }
 
   var jsCode = "var foo = '<span>bar</span>';";
   try {
     script.innerHTML = jsCode;
-    equal(script.firstChild, script.lastChild, "script has one child");
-    equal(script.firstChild.nodeType, 3, "only child is a text node");
-    equal(script.firstChild.nodeValue, jsCode, "code matches");
+    assert.equal(script.firstChild, script.lastChild, "script has one child");
+    assert.equal(script.firstChild.nodeType, 3, "only child is a text node");
+    assert.equal(script.firstChild.nodeValue, jsCode, "code matches");
   } catch (ex) {
-    ok(0, "should not cause an error")
+    assert.ok(0, "should not cause an error")
   }
 });
 
