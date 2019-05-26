@@ -29,7 +29,7 @@
     "detect-cyclic-packages": "^1.1.0",
     "jquery": "^2.2.0",
     "steal": "^1.2.9",
-    "steal-qunit": "^1.0.1",
+    "steal-qunit": "^2.0.0",
     "steal-tools": "^1.1.2",
     "testee": "^0.3.1"
   },
