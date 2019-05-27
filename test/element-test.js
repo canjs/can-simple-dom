@@ -444,3 +444,13 @@ QUnit.test("Setting textContent when there is already a child", function(assert)
 
 	assert.equal(el.childNodes.item(1), null, "span is gone");
 });
+
+QUnit.test("compareDocumentPosition", function(assert){
+	var document = new Document();
+	var parent = document.createElement("div");
+	var child = document.createElement("span");
+
+	parent.appendChild(child);
+	
+	assert.equal( parent.compareDocumentPosition(child), 20, "contains");
+});
