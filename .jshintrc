@@ -1,5 +1,5 @@
 {
-  "predef": ["QUnit"],
+  "predef": ["QUnit", "module", "require", "exports"],
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,

@@ -8,6 +8,8 @@ exports = module.exports = SimpleDOM.Document;
 
 exports.Node = SimpleDOM.Node;
 exports.Element = SimpleDOM.Element;
+exports.HTMLElement = SimpleDOM.HTMLElement;
+exports.customElements = SimpleDOM.customElements;
 exports.Document = SimpleDOM.Document;
 exports.Event = SimpleDOM.Event;
 exports.HTMLParser = SimpleDOM.HTMLParser;
